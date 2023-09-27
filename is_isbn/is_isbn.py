@@ -34,11 +34,42 @@ def is_isbn(isbn: str) -> bool:
 
 
 def check_isbn_10(isbn: str) -> bool:
+    """
+    Check if a given ISBN-10 (International Standard Book Number) is valid.
+
+    This function calculates whether it is valid based on the following criteria:
+
+    1. Multiply each digit by its position (1-based index) from right to left.
+    2. Sum the results of these multiplications.
+    3. If the sum is divisible by 11, the ISBN-10 is considered valid.
+
+    Args:
+        isbn (str): The ISBN-10 string to be checked.
+
+    Returns:
+        bool: True if the ISBN-10 is valid, False otherwise.
+    """
     total = sum((index + 1) * int(value) for index, value in enumerate(isbn[::-1]))
     return total % 11 == 0
 
 
 def check_isbn_13(isbn: str) -> bool:
+    """
+    Check if a given ISBN-13 (International Standard Book Number) is valid.
+
+    This function calculates whether it is valid based on the following criteria:
+
+    1. Multiply each digit by 3 if its position (1-based index) from right to left is even,
+       otherwise multiply by 1.
+    2. Sum the results of these multiplications.
+    3. If the sum is divisible by 10, the ISBN-13 is considered valid.
+
+    Args:
+        isbn (str): The ISBN-13 string to be checked.
+
+    Returns:
+        bool: True if the ISBN-13 is valid, False otherwise.
+    """
     total = sum(
         int(value) * (3 if (index + 1) % 2 == 0 else 1)
         for index, value in enumerate(isbn[::-1])
