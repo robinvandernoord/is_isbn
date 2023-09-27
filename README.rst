@@ -41,7 +41,7 @@ Usage
 Import:
 ::
 
-    from is_isbn.is_isbn import is_isbn
+    from is_isbn import is_isbn
 
 
 Use:
